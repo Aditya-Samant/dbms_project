@@ -1,0 +1,74 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.add-todo {
+    
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    height: 100vh; /* Ensures the form takes full height of the viewport */
+    width: 400px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.todo-list {
+    list-style-type: none;
+    padding: 20px;
+    margin: 0;
+    width: calc(100vw - 700px);
+    left: 450px;
+    position: relative; /* Added position: relative; */
+}
+
+.todo-list li {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.todo-form label,
+.todo-form input,
+.todo-form textarea,
+.todo-form button {
+    margin-bottom: 10px;
+}
+
+.todo-form input,
+.todo-form textarea {
+    padding: 10px;
+}
+
+.todo-form button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.todo-form button:hover {
+    background-color: #45a049;
+}
+
+#f2 {
+    margin-left: 10px;
+    color: #ff0000;
+}
+
+/* .searchform */

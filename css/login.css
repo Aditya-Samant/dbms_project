@@ -1,0 +1,88 @@
+/* Style for the body */
+body {
+      /* background-image: url('img/bg4.jpg'); Background image */
+    background-color: rgb(243, 95, 245);
+    background-size: cover;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Style for the container */
+  .container {
+    background: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  /* Style for the heading */
+  h1 {
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  label{
+    color: #0880c7;
+    padding: 20px;
+    size: 40%;
+  }
+  /* Style for input fields and buttons */
+  input[type="email"],
+  input[type="password"],
+  input[type="phone"] {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #614848;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Increase size on hover */
+  }
+  
+  /* Style for the "Forgot password?" link */
+  a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #333;
+    margin: 5px 0;
+    display: block;
+  }
+  
+  /* Style for the "Sign Up" button */
+  .btn1 {
+    background-color: #333;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn1:hover {
+    background-color: #222; /* Slightly darker background on hover */
+  }
+  
+  /* Background image */
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  

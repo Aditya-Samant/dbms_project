@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-container, .right-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.left-container {
+    flex: 1;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #e46565;
+}
+
+.event-list {
+    list-style: none;
+    padding: 0;
+}
+
+.event-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+/* Adjust the max-width for the new event form */
+.right-container {
+    flex: 1;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    max-width: 50%;
+    background-color: rgb(68, 237, 121);
+}
+
+/* Style the Enroll and Unenroll buttons */
+.enroll-btn, .unenroll-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.unenroll-btn{
+    background-color: #cc2e2e;
+
+}
+
+.enroll-btn:hover, .unenroll-btn:hover {
+    background-color: #45a049;
+}
+
+.success-message {
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Add styles for success and error messages */
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
+
+/* Add more styles as needed */
