@@ -100,6 +100,9 @@ if (isset($_POST['unenroll'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/uevent.css">
+    <script>
+        var REPLACE_WITH_PHP_MESSAGE = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : ''; ?>";
+    </script>
     <script src="js/script.js" defer></script>
     <title>Events</title>
 </head>
@@ -108,51 +111,48 @@ if (isset($_POST['unenroll'])) {
         <div class="left-container">
             <center><h1>New Events</h1></center>
             <!-- Display events in the New Event Form -->
-            <ul class="event-list">
-                <?php
-                foreach ($events as $event) {
-                    echo "<form method='post' action=''>";
-                    echo "<li class='event-card'>";
-                    echo "<h2>{$event['name']}</h2>";
-                    echo "<p>{$event['description']}</p>";
-                    echo "<p>DATE: {$event['date']}</p>";
-                    echo "<p>VENUE: {$event['location']}</p>";
-                    echo "<input type='hidden' name='event_id' value='{$event['id']}'>";
-                    echo "<button type='submit' name='enroll' class='enroll-btn'>Enroll</button>";
-                    if (isset($enrollSuccess) && $enrollSuccess === "Already enrolled in the event!") {
-                        echo "<p class='error-message'>$enrollSuccess</p>";
-                    } elseif (isset($enrollSuccess)) {
-                        echo "<p class='success-message'>$enrollSuccess</p>";
+            <form method="post" action="">
+                <ul class="event-list">
+                    <?php
+                    foreach ($events as $event) {
+                        echo "<form method='post' action=''>";
+                        echo "<li class='event-card'>";
+                        echo "<h2>{$event['name']}</h2>";
+                        echo "<p>{$event['description']}</p>";
+                        echo "<p>DATE: {$event['date']}</p>";
+                        echo "<p>VENUE: {$event['location']}</p>";
+                        echo "<input type='hidden' name='event_id' value='{$event['id']}'>";
+                        echo "<button type='submit' name='enroll' class='enroll-btn'>Enroll</button>";
+                        echo "</li>";
+                        echo "</li>";
+                        echo "</form>";
                     }
-                    echo "</li>";
-                    echo "</form>";
-                }
-                ?>
-            </ul>
+                    ?>
+                </ul>
+            </form>
         </div>
 
         <div class="right-container">
             <center><h1>My Events</h1></center>
             <!-- Display enrolled events in the right container -->
-            <ul class="event-list">
-                <?php
-                foreach ($enrolledEvents as $enrolledEvent) {
-                    echo "<form method='post' action=''>";
-                    echo "<li class='event-card'>";
-                    echo "<h2>{$enrolledEvent['name']}</h2>";
-                    echo "<p>{$enrolledEvent['description']}</p>";
-                    echo "<p>DATE: {$enrolledEvent['date']}</p>";
-                    echo "<p>VENUE: {$enrolledEvent['location']}</p>";
-                    echo "<input type='hidden' name='event_id' value='{$enrolledEvent['id']}'>";
-                    echo "<button type='submit' name='unenroll' class='unenroll-btn'>Unenroll</button>";
-                    if (isset($unenrollSuccess)) {
-                        echo "<p class='success-message'>$unenrollSuccess</p>";
+            <form method="post" action="">
+                <ul class="event-list">
+                    <?php
+                    foreach ($enrolledEvents as $enrolledEvent) {
+                        echo "<form method='post' action=''>";
+                        echo "<li class='event-card'>";
+                        echo "<h2>{$enrolledEvent['name']}</h2>";
+                        echo "<p>{$enrolledEvent['description']}</p>";
+                        echo "<p>DATE: {$enrolledEvent['date']}</p>";
+                        echo "<p>VENUE: {$enrolledEvent['location']}</p>";
+                        echo "<input type='hidden' name='event_id' value='{$enrolledEvent['id']}'>";
+                        echo "<button type='submit' name='unenroll' class='unenroll-btn'>Unenroll</button>";
+                        echo "</li>";
+                        echo "</form>";
                     }
-                    echo "</li>";
-                    echo "</form>";
-                }
-                ?>
-            </ul>
+                    ?>
+                </ul>
+            </form>
         </div>
     </div>
 </body>

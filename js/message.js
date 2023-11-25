@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo "alert('{$_SESSION['message']}');";
-        echo "setTimeout(function() { window.location.href = window.location.href; }, 1000);"; // Reload the page after 1 second
-        unset($_SESSION['message']);
+    var message = REPLACE_WITH_PHP_MESSAGE;
+    
+    if (message) {
+        alert(message);
+        setTimeout(function() { window.location.href = window.location.href; }, 1000);
     }
-    ?>
 });
