@@ -13,7 +13,7 @@ body {
     height: 100vh; /* Ensures the form takes full height of the viewport */
     width: 400px;
     position: fixed;
-    top: 0;
+    top: 26px;
     left: 0;
 }
 
@@ -52,6 +52,35 @@ body {
 .todo-form textarea {
     padding: 10px;
 }
+
+.search-form {
+    top: 584px;
+    position: absolute;
+    left: 20px;
+    
+}
+
+.search-form input{
+    border-radius: 5px;
+    outline: 0;
+    width: 319px;
+    height: 40px;
+}
+
+.search-form button{
+    background: url('img/search.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    width: 46px;
+    height:46px;
+    background-size: 100% 100%;
+
+}
+
+.search-form input:hover, .search-form input:focus {
+    border: 1.5px solid #009688;
+    background-color: white;
+  }
 
 .todo-form button {
     background-color: #4caf50;

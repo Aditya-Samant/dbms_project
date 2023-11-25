@@ -156,5 +156,6 @@ if (isset($_POST['unenroll'])) {
             </form>
         </div>
     </div>
+    <?php include 'returnhome.php'; ?>
 </body>
 </html>

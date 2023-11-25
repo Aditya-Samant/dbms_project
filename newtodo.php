@@ -110,7 +110,7 @@ if (isset($_POST['todoAction'])) {
             <!-- Search bar and button -->
             <form action="" method="post" class="search-form">
                 <input type="text" id="search" placeholder="search" name="search">
-                <button type="submit">Search</button>
+                <button type="submit"></button>
             </form>
         </div>
 
@@ -132,6 +132,7 @@ if (isset($_POST['todoAction'])) {
             ?>
         </ul>
     </div>
+    <?php include 'returnhome.php'; ?>
 </body>
 </html>
 
