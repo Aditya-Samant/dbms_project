@@ -101,9 +101,10 @@ if (isset($_POST['unenroll'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/uevent.css">
     <script>
-        var REPLACE_WITH_PHP_MESSAGE = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : ''; ?>";
+        var REPLACE_WITH_PHP_MESSAGE = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : '';
+        unset($_SESSION['message']) ?>";
     </script>
-    <script src="js/script.js" defer></script>
+    <script src="js/message.js" defer></script>
     <title>Events</title>
 </head>
 <body>
