@@ -56,7 +56,9 @@ $con->close();
 <body>
     
     <h1>Enrolled Events</h1>
-
+    <form action="logout.php" class="logout">
+        <input type="submit" value="logout">
+    </form>
     <!-- Search Form -->
     <form action="" method="post" class="search-form">
                 <input type="text" id="search" placeholder="search" name="search">
