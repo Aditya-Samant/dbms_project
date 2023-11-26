@@ -28,10 +28,10 @@ body {
 
 .todo-list li {
     background-color: white;
-    border: 1px solid #ddd;
+    border: 5px solid #ddd;
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -51,6 +51,7 @@ body {
 .todo-form input,
 .todo-form textarea {
     padding: 10px;
+    border-radius: 5px;
 }
 
 .search-form {
@@ -63,7 +64,7 @@ body {
 .search-form input{
     border-radius: 5px;
     outline: 0;
-    width: 319px;
+    width: 334px;
     height: 40px;
 }
 
@@ -74,6 +75,8 @@ body {
     width: 46px;
     height:46px;
     background-size: 100% 100%;
+    position: absolute;
+    left: 350px;
 
 }
 

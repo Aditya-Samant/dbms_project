@@ -20,7 +20,7 @@ print_r($_SESSION);
         <li><a href="newtodo.php">To-Do</a></li>
         <li><a href="uevent.php">Events</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="logout.php" id="rr">LOGOUT</a></li>
       </ul>
     </div>
   </nav>
