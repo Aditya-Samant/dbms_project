@@ -36,18 +36,26 @@ $con->close();
     <title>Enrolled Events</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Enrolled Events</h1>
-        <table border="1">
-            <tr>
-                <th>Coordinator</th>
-                <th>Event Name</th>
-                <th>Date</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
-            </tr>
-            <?php
+    
+    <h1>Enrolled Events</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+            <th>Coordinator</th>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+      <?php
             // Check if there are rows in the result
             if (isset($rows) && !empty($rows)) {
                 foreach ($rows as $row) {
@@ -63,11 +71,11 @@ $con->close();
             } else {
                 echo "<tr><td colspan='6'>No user has enrolled for your events.</td></tr>";
             }
-            ?>
-        </table>
-        <br>
-        <a href="home.php">Return Home</a>
-    </div>
+            ?>  
+      </tbody>
+    </table>
+  </div>
+
 </body>
 </html>
             
