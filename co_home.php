@@ -4,13 +4,31 @@ session_start();
 
 $srno = $_SESSION['coordinator'];
 
+// Initialize the WHERE clause for the search
+$whereClause = "c.srno = $srno";
+
+// Check if a search term is provided
+if (isset($_POST['search']) && !empty($_POST['search'])) {
+    $searchTerm = $con->real_escape_string($_POST['search']);
+    
+    // Add conditions for each column you want to search
+    $whereClause .= " AND (
+        c.cname LIKE '%$searchTerm%' OR
+        ev.name LIKE '%$searchTerm%' OR
+        ev.date LIKE '%$searchTerm%' OR
+        u.first LIKE '%$searchTerm%' OR
+        u.last LIKE '%$searchTerm%' OR
+        u.phoneno LIKE '%$searchTerm%'
+    )";
+}
+
 // Your MySQL query
 $query = "SELECT c.cname, ev.name, ev.date, u.first, u.last, u.phoneno
           FROM coordinators as c
           JOIN events as ev ON c.srno = ev.cid
           JOIN enrolled as en ON ev.id = en.taskid
           JOIN users as u ON en.uid = u.srno
-          WHERE c.srno = $srno
+          WHERE $whereClause
           ORDER BY ev.name";
 
 $result = $con->query($query);
@@ -38,44 +56,53 @@ $con->close();
 <body>
     
     <h1>Enrolled Events</h1>
-  <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-            <th>Coordinator</th>
-            <th>Event Name</th>
-            <th>Date</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone Number</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-      <?php
-            // Check if there are rows in the result
-            if (isset($rows) && !empty($rows)) {
-                foreach ($rows as $row) {
-                    echo "<tr>";
-                    echo "<td>{$row['cname']}</td>";
-                    echo "<td>{$row['name']}</td>";
-                    echo "<td>{$row['date']}</td>";
-                    echo "<td>{$row['first']}</td>";
-                    echo "<td>{$row['last']}</td>";
-                    echo "<td>{$row['phoneno']}</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>No user has enrolled for your events.</td></tr>";
-            }
-            ?>  
-      </tbody>
-    </table>
-  </div>
 
+    <!-- Search Form -->
+    <form action="" method="post" class="search-form">
+                <input type="text" id="search" placeholder="search" name="search">
+                <button type="submit"></button>
+    </form>
+    <div class="move">
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Coordinator</th>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <?php
+                // Check if there are rows in the result
+                if (isset($rows) && !empty($rows)) {
+                    foreach ($rows as $row) {
+                        echo "<tr>";
+                        echo "<td>{$row['cname']}</td>";
+                        echo "<td>{$row['name']}</td>";
+                        echo "<td>{$row['date']}</td>";
+                        echo "<td>{$row['first']}</td>";
+                        echo "<td>{$row['last']}</td>";
+                        echo "<td>{$row['phoneno']}</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                ?>     
+            </tbody>
+        </table>
+        <?php
+        echo "<center> <h3>No user.</h3> </center>";
+        }
+        ?> 
+    </div>
+    </div>
 </body>
 </html>
-            
