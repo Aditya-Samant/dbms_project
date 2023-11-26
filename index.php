@@ -1,3 +1,7 @@
+<?php
+session_start();
+unset($_SESSION['coordinator']);
+?>
 <!DOCTYPE html>   
 <html>   
 <head>  
@@ -12,8 +16,9 @@
         <form action="Login.php" >
             <button  class="btn">Login </button>  
         </form>
-        <form action="AdminLogin.php">
-            <button class="btn">Co-ordinator Login </button>
+        <form action="Login.php">
+        <input type="hidden" name="coordinator" value="true">
+        <button class="btn">Co-ordinator Login </button>
         </form>
         <form action="SignUp.php">
             <button  class="btn">SignUp </button>  

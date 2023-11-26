@@ -6,7 +6,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $Email=$_POST['Email'];
     $Passsword=$_POST['Password'];
-        $sql = "SELECT * FROM `trial`.`users` WHERE `Email`='$Email' AND `Password`='$Passsword' ";
+    $sql = "SELECT * FROM `trial`.`users` WHERE `Email`='$Email' AND `Password`='$Passsword' ";
+    if(isset($_SESSION['coordinator'])){
+        $sql = "SELECT * FROM `trial`.`coordinators` WHERE `Email`='$Email' AND `Password`='$Passsword' ";
+    }    
+    
         //echo $sql;
 
         $result = mysqli_query($con,$sql);
@@ -24,6 +28,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $con->close();  
     
 }  
+if(isset($_GET['coordinator'])){
+    $_SESSION['coordinator']=true;
+} 
+
+
 ?>
 
 
@@ -40,12 +49,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 <body>  
     
         <div class="container">   
-             <h1> User Login </h1> 
+             <h1>Login</h1> 
             <?php
             if($found== true)
             {
                     echo "Loginned Succesfully";
+                    if(isset($_SESSION['coordinator'])){
+                        header("Location:co_home.php");
+                    }
+                    else{
                     header("Location:home.php");
+                    }
             } 
             ?>
             <form action="Login.php" method="post">  
