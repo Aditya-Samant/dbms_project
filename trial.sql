@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2023 at 02:51 PM
+-- Generation Time: Nov 26, 2023 at 11:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coordinators`
+--
+
+CREATE TABLE `coordinators` (
+  `srno` int(11) NOT NULL,
+  `cname` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `coordinators`
+--
+
+INSERT INTO `coordinators` (`srno`, `cname`, `email`, `password`) VALUES
+(1, 'Ajay Satardekar', 'djaajay@gmail.com', 'ajax');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `enrolled`
 --
 
@@ -37,7 +57,14 @@ CREATE TABLE `enrolled` (
 --
 
 INSERT INTO `enrolled` (`uid`, `taskid`) VALUES
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
 (3, 1),
+(3, 2),
+(3, 3),
 (3, 4),
 (3, 5);
 
@@ -49,6 +76,7 @@ INSERT INTO `enrolled` (`uid`, `taskid`) VALUES
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
   `name` text NOT NULL,
   `description` text NOT NULL,
   `date` date NOT NULL,
@@ -59,12 +87,12 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `description`, `date`, `location`) VALUES
-(1, 'dasfagrare', 'fvsdsdvdgvggvdvdfdrgdg', '2023-11-08', 'Bicholim'),
-(2, 'ssss', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissimos! Dolorem ea eum, impedit dignissimos fugiat voluptatibus itaque odio!\r\n', '2023-11-01', 'srfgsg'),
-(3, 'somting', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissi', '2014-11-25', 'Panjim'),
-(4, 'iaan', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissiLorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissi', '2023-11-06', 'Ponda'),
-(5, 'latest', 'lorem latest', '2023-11-25', 'Pune');
+INSERT INTO `events` (`id`, `cid`, `name`, `description`, `date`, `location`) VALUES
+(1, 1, 'dasfagrare', 'fvsdsdvdgvggvdvdfdrgdg', '2023-11-08', 'Bicholim'),
+(2, 1, 'ssss', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissimos! Dolorem ea eum, impedit dignissimos fugiat voluptatibus itaque odio!\r\n', '2023-11-01', 'srfgsg'),
+(3, 1, 'somting', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissi', '2014-11-25', 'Panjim'),
+(4, 1, 'iaan', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissiLorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quaerat perferendis sit ducimus tempore! Fugit dicta facere ratione, incidunt deserunt dignissi', '2023-11-06', 'Ponda'),
+(5, 1, 'latest', 'lorem latest', '2023-11-25', 'Pune');
 
 -- --------------------------------------------------------
 
@@ -121,6 +149,13 @@ INSERT INTO `users` (`srno`, `first`, `last`, `password`, `retypepassword`, `pho
 --
 
 --
+-- Indexes for table `coordinators`
+--
+ALTER TABLE `coordinators`
+  ADD PRIMARY KEY (`srno`),
+  ADD KEY `srno` (`srno`);
+
+--
 -- Indexes for table `enrolled`
 --
 ALTER TABLE `enrolled`
@@ -132,7 +167,8 @@ ALTER TABLE `enrolled`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cid` (`cid`);
 
 --
 -- Indexes for table `todo`
@@ -153,6 +189,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `coordinators`
+--
+ALTER TABLE `coordinators`
+  MODIFY `srno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -168,7 +210,7 @@ ALTER TABLE `todo`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `srno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `srno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -178,14 +220,20 @@ ALTER TABLE `users`
 -- Constraints for table `enrolled`
 --
 ALTER TABLE `enrolled`
-  ADD CONSTRAINT `enrolled_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`srno`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `enrolled_ibfk_2` FOREIGN KEY (`taskid`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `enrolled_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`srno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enrolled_ibfk_2` FOREIGN KEY (`taskid`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `coordinators` (`srno`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `todo`
 --
 ALTER TABLE `todo`
-  ADD CONSTRAINT `todo_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`srno`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `todo_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`srno`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
